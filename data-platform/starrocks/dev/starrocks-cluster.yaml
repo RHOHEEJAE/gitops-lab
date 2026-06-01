@@ -1,0 +1,25 @@
+apiVersion: starrocks.com/v1
+kind: StarRocksCluster
+metadata:
+  name: starrocks
+  namespace: data-starrocks
+spec:
+  starRocksFeSpec:
+    replicas: 1
+    image: starrocks/fe-ubuntu:4.1.1
+    serviceAccount: starrocks-fe
+    storageVolumes:
+      - name: fe-meta
+        storageClassName: standard
+        storageSize: 10Gi
+        mountPath: /opt/starrocks/fe/meta
+
+  starRocksBeSpec:
+    replicas: 1
+    image: starrocks/be-ubuntu:4.1.1
+    serviceAccount: starrocks-be
+    storageVolumes:
+      - name: be-storage
+        storageClassName: standard
+        storageSize: 50Gi
+        mountPath: /opt/starrocks/be/storage

@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: starrocks-cluster
+  namespace: cicd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/RHOHEEJAE/gitops-lab.git
+    targetRevision: main
+    path: data-platform/starrocks/dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: data-starrocks
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=false
