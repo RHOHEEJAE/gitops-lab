@@ -9,8 +9,8 @@ spec:
   project: default
   sources:
     - repoURL: https://starrocks.github.io/starrocks-kubernetes-operator
-      chart: starrocks-operator
-      targetRevision: "1.9.0"
+      chart: operator
+      targetRevision: "1.11.4"
       helm:
         valueFiles:
           - $values/data-platform/starrocks-operator/values.yaml
